@@ -1,0 +1,24 @@
+= form_for @note, :html => { :class => "form-horizontal note" } do |f|
+  - if @note.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@note.errors.count, "error")
+      .panel-body
+        %ul
+          - @note.errors.full_messages.each do |msg|
+            %li= msg
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'form-control'
+    = error_span(@note[:title])
+  .control-group
+    = f.label :event_description, :class => 'control-label'
+    .controls
+      = f.text_field :event_description, :class => 'form-control'
+    = error_span(@note[:event_description])
+    = f.hidden_field :user_id, :value => "#{current_user.id}"
+    %br
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), notes_path, :class => 'btn btn-default'

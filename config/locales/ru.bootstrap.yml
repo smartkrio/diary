@@ -1,0 +1,20 @@
+ru:
+  breadcrumbs:
+    application:
+      root: "Index"
+    pages:
+      pages: "Pages"
+  helpers:
+    actions: "Действия"
+    links:
+      back: "Назад"
+      cancel: "Отменить"
+      confirm: "Вы уверены?"
+      destroy: "Удалить"
+      new: "Новая"
+      edit: "Изменить"
+    titles:
+      edit: "Изменить заметку"
+      save: "Сохранить заметку"
+      new: "Создать заметку"
+      delete: "Удалить заметку"
