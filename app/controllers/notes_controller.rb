@@ -4,7 +4,7 @@ class NotesController < ApplicationController
 
   def index
     # byebug
-    @notes = Note.search(params[:first_date], params[:second_date])
+    @notes = Note.where(user_id: current_user.id).search(params[:first_date], params[:second_date])
   end
 
   def show
