@@ -1,9 +1,4 @@
 ru:
-  breadcrumbs:
-    application:
-      root: "Index"
-    pages:
-      pages: "Pages"
   helpers:
     actions: "Действия"
     links:

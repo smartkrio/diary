@@ -3,7 +3,8 @@ class NotesController < ApplicationController
 
 
   def index
-    @notes = Note.all
+    # byebug
+    @notes = Note.search(params[:first_date], params[:second_date])
   end
 
   def show
@@ -39,6 +40,7 @@ class NotesController < ApplicationController
       redirect_to notes_url, notice: 'Заметка успешно удалена!'
     end
   end
+
 
   private
 

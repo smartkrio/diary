@@ -1,10 +1,13 @@
 .page-header
   %h1 Заметки
-Найти за период:
-%input.from.input-small.datepicker{'data-date-format' => "mm-dd-yyyy"}
-\-
-%input.to.input-small.form-controll.datepicker{'data-date-format' => "mm-dd-yyyy"}
-= link_to 'Поиск', '#',:class => 'btn btn-success'
+
+  =form_tag notes_path, method: :get, :id => 'notes_search', class: 'form-inline' do
+    .form-group
+      = text_field_tag :first_date, params[:first_date], class: 'datepicker form-control', "data-date-format" => "dd-mm-yyyy"
+    .form-group
+      = text_field_tag :second_date, params[:second_date], class: 'datepicker form-control', "data-date-format" => "dd-mm-yyyy"
+    = submit_tag "Искать за период", name: nil, class: 'btn btn-success'
+
 %table.table.table-striped
   %thead
     %tr
@@ -13,16 +16,7 @@
       %th Описание события
       %th Создана
       %th Действия
-  %tbody
-    - @notes.each do |note|
-      %tr
-        %td= link_to note.id, note_path(note)
-        %td= note.title
-        %td= note.event_description
-        %td= l note.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_note_path(note), :class => 'btn btn-default btn-xs'
-
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), note_path(note), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+  %tbody.notes-container
+    = render 'table'
 
 = link_to t('.new', :default => t("helpers.links.new")), new_note_path,:class => 'btn btn-primary'
